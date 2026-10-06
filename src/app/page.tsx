@@ -1,5 +1,4 @@
 import AvailabilitySummaryChart from "@/components/AvailabilitySummaryChart";
-import Image from "next/image";
 
 
 

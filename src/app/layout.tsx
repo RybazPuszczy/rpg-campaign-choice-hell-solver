@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans, Merriweather } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { HybridTooltipProvider, TouchProvider } from "@/components/ui/hybrid-tooltip";
 
 const merriweatherHeading = Merriweather({subsets:['latin'],variable:'--font-heading'});
 
@@ -30,9 +30,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", instrumentSans.variable, merriweatherHeading.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <TooltipProvider>
-          {children}
-        </TooltipProvider>
+        <TouchProvider>
+          <HybridTooltipProvider>
+            {children}
+          </HybridTooltipProvider>
+        </TouchProvider>
         </body>
     </html>
   );

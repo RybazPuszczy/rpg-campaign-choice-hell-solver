@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount } from "@/components/ui/avatar"
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { HybridTooltip, HybridTooltipTrigger, HybridTooltipContent } from "./ui/hybrid-tooltip";
 import { Card, CardContent } from "./ui/card"
 import { Progress } from "./ui/progress"
 
@@ -49,14 +49,14 @@ function getPlayerAvatar(player : Player){
     : nameSplit[0][0] + nameSplit[1][0]
 
     return (
-        <Tooltip>
-            <TooltipTrigger render={
-                <Avatar>
-                    <AvatarFallback>{avatarFallback}</AvatarFallback>
-                </Avatar>
-            }/>
-        <TooltipContent>{player.name}</TooltipContent>
-        </Tooltip>
+        <HybridTooltip>
+            <HybridTooltipTrigger nativebutton="false">
+                    <Avatar>
+                        <AvatarFallback>{avatarFallback}</AvatarFallback>
+                    </Avatar>
+            </HybridTooltipTrigger>
+        <HybridTooltipContent>{player.name}</HybridTooltipContent>
+        </HybridTooltip>
     )
 }
 
@@ -84,16 +84,16 @@ export default async function AvailabilitySummaryChart(){
                                     </span>})
                                 }
                                 {pCount>4 ? 
-                                <Tooltip>
-                                    <TooltipTrigger render={
+                                <HybridTooltip>
+                                    <HybridTooltipTrigger nativebutton="false">
                                         <AvatarGroupCount>{`+${pCount-3}`}</AvatarGroupCount>
-                                    }/>
-                                    <TooltipContent className={"text-pretty"}>
+                                    </HybridTooltipTrigger>
+                                    <HybridTooltipContent className={"text-pretty"}>
                                     <div>
                                     {playersFiltered?.slice(3).map(p=>{return <p key={`pname-${p.id}`}>{p.name}</p>})}
                                     </div>
-                                    </TooltipContent> 
-                                </Tooltip>: <></>}
+                                    </HybridTooltipContent> 
+                                </HybridTooltip>: <></>}
                                 </AvatarGroup>
                             </div>
 
